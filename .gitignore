@@ -1,3 +1,5 @@
 todo.yaml
 .idea
 .vscode
+*.svg
+jst.js
