@@ -1,0 +1,27 @@
+html, body {
+  margin: 0;
+}
+
+@media screen and (min-width: 1000px) {
+  div.main {
+    width: 100%;
+  }
+  div.main div.post {
+    width: 95%;
+    margin: 0 auto;
+  }
+}
+
+nav {
+  width: 100%;
+}
+
+div.main {
+  width: 100%;
+}
+
+div.main div.post {
+  width: 1000px;
+  margin: 0 auto;
+}
+/*# sourceMappingURL=style.css.map */
