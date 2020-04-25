@@ -17,75 +17,13 @@
 </head>
 <body>
     <noscript>
-        This page requires Javascript to be active, in order to run properly.
+        This page requires Javascript being active, in order to run properly.
     </noscript>
-    <div id="main" class="main">
-        <div id="links" class="links">
-        </div>
-        <div id="posts" class="posts"></div>
     
-        <div class="post">
-            <h1>Testing title block</h1>
-            <h4>Date - Categories</h4>
-            <p>Some description</p>
-        </div>
+    <div id="main">
 
     </div>
 
-    <script type="text/javascript">
-    //prepare object template
-    var data = {
-        "posts": [
-            {
-                "title":    'Tytuł posta nr1',
-                "date":     '2020-03-24',
-                "link":     'post-nr1'
-            },
-            {
-                "title":    'Post numer 2',
-                "date":     '2020-03-25',
-                "link":     'post-nr-2'
-            },
-            {
-                "title":    'Tytuł posta nr 3',
-                "date":     '2020-03-26',
-                "link":     'post-numer-3'
-            }
-        ]
-    }
-
-    //div handler
-
-    var block = document.getElementById('links')
-
-    // table definig hlinks names
-    var hlinks = ['prod', 'test', 'funcs', 'realm', 'exhib', 'archive'];
-
-    // push a elements containing theese links to main div
-    for (var i=0; i<hlinks.length; i++){
-        console.log('Pushing link: ' + hlinks[i]);
-        // create temporary element and set up it's attributes
-        let element = document.createElement('a');
-        element.setAttribute('href', hlinks[i]);
-        element.innerHTML = 'Idz do » ' + hlinks[i] + '\n';
-        //push it to main div
-        block.appendChild(element);
-    }
-
-    block = document.getElementById('posts')
-
-    // generating links out of json
-    for (var i = 0; i < data.posts.length; i++) {
-        console.log('JSON object no ' + i);
-        
-        //temporary element
-        let element = document.createElement('a');
-        element.setAttribute('href', data.posts[i].link);
-        element.innerHTML = data.posts[i].date + " » " + data.posts[i].title;
-        //push element
-        block.appendChild(element)
-    }
-
-    </script>
+    <script src="app.js"></script>
 </body>
 </html>
