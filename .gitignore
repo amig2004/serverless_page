@@ -3,3 +3,6 @@ todo.yaml
 .vscode
 *.svg
 jst.js
+assets
+*.otf
+/fonts
