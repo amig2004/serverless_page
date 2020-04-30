@@ -11,14 +11,49 @@ nav
     width: 100%
     grid-template-columns: 5% 10% 70% 10% 5%
     height: 100px
-    background-color: #fcfcfc
-    h1 
+    background-color: #f2f2f2
+    column-gap: 1rem    
+    justify-content: space-evenly
+
+    .logo
+        height: 100%
         grid-column: 2 / 3
-    
-    a 
-        grid-column: 3/4
+        // background-color: green
+        align-self: center
+        place-self: center
+        font-size: 1rem
+        
+    .menu
+        
+        height: 100%
+        grid-column: 3 / 4
         grid-row: 1 / 2
+        
+        align-self: center
+        // background-color: lightblue 
+
+        justify-items: center
+        
+        /*nested grid*/
+        display: grid
+        grid-template-columns: 25% 25% 25% 25%
         justify-content: space-evenly
+        align-items: stretch
+
+        a
+            align-self: center
+        
+    .menu-trigger
+        grid-column: 4 / 5
+        // place-self: center
+        place-self: center
+        .bar
+            display: block
+            background-color: #000000
+            width: 50px
+            height: 5px
+            margin-top: 5px
+
 
 div.main
     width: 100%
