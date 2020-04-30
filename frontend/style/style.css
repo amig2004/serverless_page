@@ -1,19 +1,58 @@
+@font-face {
+  src: url("../fonts/overpass-thin.otf") format("truetype");
+  font-family: "Overpass";
+  font-weight: 200;
+}
+
+@font-face {
+  src: url("../fonts/overpass-extralight.otf") format("truetype");
+  font-family: "Overpass";
+  font-weight: 300;
+}
+
+@font-face {
+  src: url("../fonts/overpass-regular.otf") format("truetype");
+  font-family: "Overpass";
+  font-weight: 500;
+}
+
+@font-face {
+  src: url("../fonts/overpass-extrabold.otf") format("truetype");
+  font-family: "Overpass";
+  font-weight: 800;
+}
+
 html, body {
+  font-family: 'Overpass', sans-serif;
   margin: 0;
 }
 
-@media screen and (min-width: 1000px) {
-  div.main {
-    width: 100%;
-  }
-  div.main div.post {
-    width: 95%;
-    margin: 0 auto;
-  }
+nav {
+  display: -ms-grid;
+  display: grid;
+  width: 100%;
+  -ms-grid-columns: 5% 10% 70% 10% 5%;
+      grid-template-columns: 5% 10% 70% 10% 5%;
+  height: 100px;
+  background-color: #fcfcfc;
 }
 
-nav {
-  width: 100%;
+nav h1 {
+  -ms-grid-column: 2;
+  -ms-grid-column-span: 1;
+  grid-column: 2 / 3;
+}
+
+nav a {
+  -ms-grid-column: 3;
+  -ms-grid-column-span: 1;
+  grid-column: 3/4;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  grid-row: 1 / 2;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
 
 div.main {
@@ -23,5 +62,46 @@ div.main {
 div.main div.post {
   width: 1000px;
   margin: 0 auto;
+}
+
+div.main div.post h1 {
+  font-weight: 800;
+  font-family: 'Overpass', sans-serif;
+  font-size: 32px;
+  color: #333;
+}
+
+div.main div.post h4 {
+  font-family: 'Overpass', sans-serif;
+  font-color: lightgrey;
+  font-weight: 200;
+  font-size: 21px;
+  margin: 0;
+}
+
+div.main div.post p {
+  font-family: 'Overpass', sans-serif;
+  text-align: justify;
+  font-size: 17px;
+  font-weight: 300;
+  color: #333;
+}
+
+div.main div.post a {
+  font-family: 'Overpass', sans-serif;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: 500;
+  color: #0070c9;
+}
+
+@media screen and (max-width: 1000px) {
+  div.main {
+    width: 100%;
+  }
+  div.main div.post {
+    width: 95%;
+    margin: 0 auto;
+  }
 }
 /*# sourceMappingURL=style.css.map */

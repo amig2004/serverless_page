@@ -1,25 +1,62 @@
+@import font-defs
+
 $break-point: 1000px
     
 html, body
+    font-family: 'Overpass', sans-serif
     margin: 0
 
-@media screen and (min-width: $break-point)
-    div.main
-        width: 100%
-        div.post
-            width: 95%
-            margin: 0 auto
-
-
 nav
+    display: grid
     width: 100%
+    grid-template-columns: 5% 10% 70% 10% 5%
+    height: 100px
+    background-color: #fcfcfc
+    h1 
+        grid-column: 2 / 3
+    
+    a 
+        grid-column: 3/4
+        grid-row: 1 / 2
+        justify-content: space-evenly
 
 div.main
     width: 100%
     div.post
         width: $break-point
         margin: 0 auto 
-        
+        h1
+            font-weight: 800
+            font-family: 'Overpass', sans-serif
+            font-size: 32px
+            color: #333
+        h4
+            font-family: 'Overpass', sans-serif
+            font-color: lightgrey
+            font-weight: 200
+            font-size: 21px
+            margin: 0
+        p 
+            font-family: 'Overpass', sans-serif
+            text-align: justify
+            font-size: 17px
+            font-weight: 300
+            color: #333
+
+        a
+            font-family: 'Overpass', sans-serif
+            text-decoration: none
+            font-size: 17px
+            font-weight: 500
+            color: #0070c9
+
+@media screen and (max-width: $break-point)
+    div.main
+        width: 100%
+        div.post
+            width: 95%
+            margin: 0 auto
+
 
 
 
