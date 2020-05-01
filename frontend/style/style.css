@@ -199,6 +199,9 @@ nav .menu-trigger .bar {
   }
   nav .menu {
     display: none;
+  }
+  nav .menu-show {
+    display: block;
     -ms-grid-column: 1;
     -ms-grid-column-span: 4;
     grid-column: 1 / 5;
@@ -207,7 +210,7 @@ nav .menu-trigger .bar {
     -ms-grid-columns: 100%;
         grid-template-columns: 100%;
   }
-  nav .menu a {
+  nav .menu-show a {
     z-index: 100;
     background-color: #f2f2f2;
     display: block;
