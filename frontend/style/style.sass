@@ -1,6 +1,7 @@
 @import font-defs
 
 $break-point: 1000px
+$navbar-color: #f2f2f2
     
 html, body
     font-family: 'Overpass', sans-serif
@@ -11,51 +12,149 @@ nav
     width: 100%
     grid-template-columns: 5% 10% 70% 10% 5%
     height: 100px
-    background-color: #fcfcfc
-    h1 
-        grid-column: 2 / 3
-    
-    a 
-        grid-column: 3/4
-        grid-row: 1 / 2
-        justify-content: space-evenly
+    background-color: $navbar-color
+    column-gap: 1rem    
+    justify-content: space-evenly
 
-div.main
-    width: 100%
-    div.post
-        width: $break-point
-        margin: 0 auto 
-        h1
-            font-weight: 800
-            font-family: 'Overpass', sans-serif
-            font-size: 32px
-            color: #333
-        h4
-            font-family: 'Overpass', sans-serif
-            font-color: lightgrey
-            font-weight: 200
-            font-size: 21px
-            margin: 0
-        p 
-            font-family: 'Overpass', sans-serif
-            text-align: justify
-            font-size: 17px
-            font-weight: 300
-            color: #333
+    .logo
+        height: 100%
+        grid-column: 2 / 3
+        // background-color: green
+        align-self: center
+        place-self: center
+        font-size: 1rem
+        
+    .menu
+        
+        height: 100%
+        grid-column: 3 / 4
+        grid-row: 1 / 2
+        
+        align-self: center
+        // background-color: lightblue 
+
+        justify-items: center
+        
+        /*nested grid*/
+        display: grid
+        grid-template-columns: 25% 25% 25% 25%
+        justify-content: space-evenly
+        align-items: center
 
         a
-            font-family: 'Overpass', sans-serif
-            text-decoration: none
-            font-size: 17px
-            font-weight: 500
-            color: #0070c9
+            display: block
+            height: 100%
+            width: 100%
+            text-align: center
+            align-self: center
+
+        a:hover 
+                background-color: red
+        
+    .menu-trigger
+        grid-column: 4 / 5
+        // place-self: center
+        place-self: center
+        display: none
+        .bar
+            display: block
+            width: 100%
+            background-color: #000000
+            width: 50px
+            height: 5px
+            margin-top: 5px
+
+
+#main
+    width: 100%
+    display: grid
+    grid-template-columns: 25vw 50vw 25vw
+    .post
+        grid-column: 2 / 3
+        
+        span.date, span.author, span.category
+            display: inline-block
+            margin-left: 1%
+        .main
+            h1
+                font-weight: 800
+                font-family: 'Overpass', sans-serif
+                font-size: 32px
+                color: #333
+            h4
+                font-family: 'Overpass', sans-serif
+                font-color: lightgrey
+                font-weight: 200
+                font-size: 21px
+                margin: 0
+            p 
+                font-family: 'Overpass', sans-serif
+                text-align: justify
+                font-size: 17px
+                font-weight: 300
+                color: #333
+
+            a
+                font-family: 'Overpass', sans-serif
+                text-decoration: none
+                font-size: 17px
+                font-weight: 500
+                color: #0070c9
+            
+            blockquote
+                background-color: #f5f5f5
+                padding: 1rem
+                font-style: italic
+                font-size: 18px
+            span 
+                //TODO set up proper font
+                display: block
+                font-style: bold
+                font-size: 22px
+    
 
 @media screen and (max-width: $break-point)
-    div.main
+
+    nav
+        display: grid
         width: 100%
-        div.post
-            width: 95%
-            margin: 0 auto
+        grid-template-columns: 10% 50% 30% 10%
+        grid-template-rows: 100px auto
+        
+        .logo
+            grid-column: 2 / 3
+            grid-row: 1
+
+        .menu-trigger
+            display: block
+            grid-column: 3 / 4
+            grid-row: 1
+        
+        .menu
+            display: none
+            
+        .menu-show
+            display: block
+            grid-column: 1 / 5
+            grid-row: 2
+            grid-template-columns: 100%
+            a
+                z-index: 100
+                background-color: $navbar-color
+                display: block
+                width: 100vw
+                height: 2rem
+                padding-top: 0.5rem
+                padding-bottom: 0.5rem
+                text-align: center
+                align-self: center
+
+
+    #main
+        width: 100%
+        grid-template-columns: 2.5vw 95vw 2.5vw
+        .post
+           
 
 
 

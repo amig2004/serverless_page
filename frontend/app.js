@@ -13,11 +13,11 @@ class Post {
         console.log('Stripping text')
         // if text is shorter than 300 chars -> return whole
         if (text.length <= 300) {
-            return text;
+            return text + '...';
         }
         else if (text[300] == ' ') {
             // if the 300th character is space -> return text slice to 300
-            return text.slice(0,300);
+            return text.slice(0,300)+ '...';
         } 
         else {
             let cnt = 300;
@@ -25,7 +25,7 @@ class Post {
             while(cnt < 330) {
                 //until space found -> increase counter
                 if (text[cnt] == ' ') {
-                    return text.slice(0,cnt);
+                    return text.slice(0,cnt)+ '...';
                 }
                 else {
                     cnt++;
@@ -61,11 +61,11 @@ class Post {
         // create root object
         let rootElement = document.createElement('div');
         console.log(bodyObj)
-        console.log('Body access: ' + bodyObj.body[0])
-        console.log(bodyObj.body[0].p)
+        console.log('Body access: ' + bodyObj)
+        
         
         // iterate over body 
-        // for (let element in bodyObj.body) {
+        // for (let element in bodyObj) {
         //     // create html element, based on element key
         //     console.log("Elem: " + element[0])
         //     console.log('New tag: ' + Object.keys(element));
@@ -78,19 +78,21 @@ class Post {
         //     //rootElement.appendChild(currentElement);
         //     }
 
-        for (let j = 0; j < bodyObj.body.length; j++) {
-            let tag = Object.keys(bodyObj.body[j]);
+        for (let j = 0; j < bodyObj.length; j++) {
+            let tag = Object.keys(bodyObj[j]);
             console.log("New tag: " + tag);
-            console.log("Tag value : " + bodyObj.body[j][tag])
+            console.log("Tag value : " + bodyObj[j][tag])
 
-            let currentElement = this.parseTag(tag, bodyObj.body[j][tag]);
+            let currentElement = this.parseTag(tag, bodyObj[j][tag]);
 
             rootElement.appendChild(currentElement);
             
         }
-        
+        console.log("body root: " + rootElement)
+        console.log(rootElement.innerHTML)
+        console.log(typeof(rootElement))
 
-        return rootElement;
+        return rootElement.innerHTML;
     }
 
 
@@ -167,7 +169,7 @@ class Post {
         content.date.innerHTML = this.date;
         content.author.innerHTML = this.author;
         content.categories.innerHTML = this.categories;
-        content.body.innerHTML = this.body;
+        content.body.innerHTML = Post.parseBodyJSON(this.body);
 
 
         // summarize data and return prepared object
@@ -186,6 +188,7 @@ class App {
         this.endpoint = '';
         this.key = undefined;
         this.error = undefined;
+        this.menu = false;
 
         // DOM declarations 
         this.rootElement = document.getElementById('main');
@@ -206,7 +209,7 @@ class App {
     }
     // insert new post object to this.posts table
     addPost(record) {
-        this.posts.push(
+        this.posts.unshift(
             new Post(
                 record.title,
                 record.date,
@@ -234,10 +237,31 @@ class App {
         }
     }
 
+    addClickHandler(){
+
+    }
+
     // Render single post on website
     showPost(id){
         this.clearRoot()
-        this.posts[id].render()
+        let elem = this.posts[id].render()
+        this.rootElement.appendChild(elem);
+    }
+
+    toggleMenu() {
+        var handler = document.getElementById('idblock');
+        if(this.menu === false) {
+            this.menu = true;
+            console.log('menu show');
+            handler.classList.add('menu-show');
+        }
+        else if (this.menu === true) {
+            this.menu = false;
+            console.log('menu hidden');
+            handler.classList.remove('menu-show');
+
+        }
+
     }
 }
 
@@ -298,11 +322,11 @@ window.onload = function() {
         "category": "Felieton",
         "link": "testuje-drugiego-posta",
         "body" : [
-            {"p": "Lorem ipsum dolor sit amet, that exist in first and testing paragraph, jsut to see if text cutting is correclty set up. Everything should be cut up to a given point when, the length of this text exceeds thershold set up directly in a code. And form of this element should be tested within code."},
-            {"img": "test_imt1.png"},
-            {"p": "Lorem ipsum 2"},
-            {"span": "test span"},
-            {"span": "test span1"},
+            {"p": "Lorem ipsum dolor sit amet, that exist in first and testing paragraph, jsut to see if text cutting is correclty set up. Everything should be cut up to a given point when, the length of this text exceeds thershold set up directly in a code. And form of this element should be tested within code. Anything that exceeds the threshold should be cut in the main view and showed back again in detailed view. I hope this is ognna work without any problems, right?"},
+            {"img": "D:\\projects\\serverless page\\assets\\photo-moto.jpg"},
+            {"p": "Lorem ipsum 2 is not as long first para, but still worth to see how does it works..."},
+            {"span": "test these one longer span, should be ok"},
+            {"span": "test this one shorter span"},
             {"blockquote": "this is testing quote 1. quite logner than usual, right?"},
             {"img": "test_imt2.png"},
         ]
@@ -310,15 +334,30 @@ window.onload = function() {
 
 
     var app = new App();
+    
+    // insert data to app strucutre
     app.addPost(sampleRecord);
     app.addPost(sampleRecord1);
+
+
+
+
 
     // console.log(app.posts)
     // let htmobj = app.posts[0].renderShort();
 
     // app.rootElement.appendChild(htmobj);
 
-    app.showPostList();
+    // app.showPostList();
+    app.showPost(0);
+    
+    // const sleep = (milliseconds) => {
+    //     return new Promise(resolve => setTimeout(resolve, milliseconds))
+    //   }
+      
+    // sleep(2000).then(() => {
+    //     app.showPost(0)
+    // })
 
 
     // var parseRes = Post.parseBodyJSON(samepleData);
@@ -331,4 +370,9 @@ window.onload = function() {
 //     document.getElementById('main').appendChild(parseRes);
 
 //     console.log('Testing access: ' + Object.keys(samepleData.body[0]))
+
+// handle menu trigger
+document.getElementById('trigger').addEventListener('click', app.toggleMenu);
+
 }
+
