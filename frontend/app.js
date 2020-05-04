@@ -195,16 +195,33 @@ class App {
         this.posts = [];
 
         // fetch data from backend
-        this.fetchData()
+        //this.fetchData()
     }
 
     // fetching data from backend
     fetchData() {
         let data = fetch(this.endpoint)
-
-        for(let record in data.posts) {
-            this.addPost(record)
-        }
+    
+        // handle server response
+        data
+            .then(function(response) {
+                // format response to json
+                return response.json();
+            })  
+            .then(function(formResp){
+                // create posts basing on given response
+                for (let record of formResp.posts){
+                    this.addPost(record);
+                }
+            })
+            .catch(function(response) {
+                return new Error("Server connection error")
+            })
+            .finally(function(response){
+                // potentially turn off loading screen
+                // dispaly postList view
+                this.showPostList();
+            })
 
     }
     // insert new post object to this.posts table
@@ -248,21 +265,6 @@ class App {
         this.rootElement.appendChild(elem);
     }
 
-    toggleMenu() {
-        var handler = document.getElementById('idblock');
-        if(this.menu === false) {
-            this.menu = true;
-            console.log('menu show');
-            handler.classList.add('menu-show');
-        }
-        else if (this.menu === true) {
-            this.menu = false;
-            console.log('menu hidden');
-            handler.classList.remove('menu-show');
-
-        }
-
-    }
 }
 
 
@@ -348,8 +350,8 @@ window.onload = function() {
 
     // app.rootElement.appendChild(htmobj);
 
-    // app.showPostList();
-    app.showPost(0);
+    app.showPostList();
+    //app.showPost(0);
     
     // const sleep = (milliseconds) => {
     //     return new Promise(resolve => setTimeout(resolve, milliseconds))
@@ -372,7 +374,11 @@ window.onload = function() {
 //     console.log('Testing access: ' + Object.keys(samepleData.body[0]))
 
 // handle menu trigger
-document.getElementById('trigger').addEventListener('click', app.toggleMenu);
+const menuTrigger = document.getElementById('trigger');
+const menuElement = document.getElementById('idblock');
+menuTrigger.addEventListener('click', function() {
+    menuElement.classList.toggle('menu-show');
+});
 
 }
 
