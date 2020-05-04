@@ -5,15 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="Stylesheet" type="text/css" href="style/style.css" />
     <title>Document</title>
-    <style>
-        div.links {
-            background-color: lightblue;
-        }
-
-        div.posts {
-            background-color: green;
-        }
-    </style>
 </head>
 <body>
     <noscript>
@@ -21,13 +12,13 @@
     </noscript>
     <nav>
         <div class="logo">Andrzej Kopec</div>
-        <div class="menu">
+        <div id="idblock" class="menu">
             <a href="about">O mnie</a>
             <a href="cats">Kategorie</a>
             <a href="newsletter">Newsletter</a>
             <a href="contact">Kontakt</a>
         </div>
-        <div class="menu-trigger">
+        <div id="trigger" class="menu-trigger">
             <div class="bar"></div>
             <div class="bar"></div>
             <div class="bar"></div>
@@ -37,7 +28,7 @@
     <div id="main">
 
     </div>
-
+    <script src="menu.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
