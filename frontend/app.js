@@ -1,3 +1,5 @@
+
+
 window.onload = function() {
     // init app and display post list
     
@@ -56,10 +58,27 @@ window.onload = function() {
     app.addPost(sampleRecord);
     app.addPost(sampleRecord1);
 
+    // insert event listeners to post buttons
+    // const postBtns = document.getElementsByClassName('post-link');
+    // console.log('BTN handlers: ')
+    // console.log(postBtns)
 
+    //event listener to detect which post was clicked
+    document.addEventListener("click", function(e){
+        if (e.target.classList[0] === "post-link") {
+            console.log('POST OPENED: ' + e.target.name)
+            app.showPost(1)
+        }
+
+        else if (e.target.classList[0] === "logo") {
+            console.log("MAIN SITE OPENED")
+            app.showPostList()
+        }
+    })
 
     app.showPostList();
-    //app.showPost(0);
+
+
     
 
 // handle menu trigger
@@ -67,6 +86,7 @@ const menuTrigger = document.getElementById('trigger');
 const menuElement = document.getElementById('idblock');
 menuTrigger.addEventListener('click', function() {
     menuElement.classList.toggle('menu-show');
+    menuTrigger.classList.toggle('menu-trigger-acitve')
 });
 
 }
