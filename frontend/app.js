@@ -65,9 +65,9 @@ window.onload = function() {
 
     //event listener to detect which post was clicked
     document.addEventListener("click", function(e){
-        if (e.target.classList[0] === "post-link") {
+        if (e.target.classList[0] == "post-link") {
             console.log('POST OPENED: ' + e.target.name)
-            app.showPost(1)
+            app.showPost(e.target.name)
         }
 
         else if (e.target.classList[0] === "logo") {

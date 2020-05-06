@@ -1,5 +1,8 @@
 class App {
+    
     constructor(){
+        //static let appFailEvent = new CustomEvent('appFail', {detail: elem.dataset.time})
+
         // data fetching and access mgmt
         this.endpoint = '';
         this.key = undefined;
@@ -75,7 +78,27 @@ class App {
     }
 
     // Render single post on website
-    showPost(id){
+    showPost(slug){
+        // determine post table index, based on give slug value
+        let id = undefined
+        console.log('opening slug: ' + slug)
+        console.log('opening Slug type: ' + typeof(slug))
+        for (let cnt = 0; cnt < this.posts.length; cnt++) {
+            console.log('CHECKED SLUG: ' + this.posts[cnt].link)
+            if (this.posts[cnt].link === slug){
+                id = cnt;
+                break
+            }
+            console.log('Slug type: ' + typeof(this.posts[cnt].link))
+        }
+        
+        // killswitch if no post found
+        if(id == undefined) {
+            console.log('GIVEN POST NOT FOUND')
+            this.error = "Opening post: " + slug + " failed"
+            
+        }
+
         this.clearRoot()
         let elem = this.posts[id].render()
         this.rootElement.appendChild(elem);
